@@ -1,0 +1,277 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maite Sweet Treats - Premium Cakes & Muffins</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo">
+                    <i class="fas fa-birthday-cake"></i>
+                    <span>Maite Sweet Treats</span>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Freshly Baked Delights</h1>
+            <p>Premium cakes and muffins made with love and the finest ingredients</p>
+            <button class="cta-button" onclick="scrollToProducts()">Order Now</button>
+        </div>
+        <!-- Background Video -->
+        <video autoplay muted loop class="hero-video">
+            <source src="images/video.mp4" type="video/mp4">
+        </video>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="products">
+        <div class="container">
+            <h2>Our Delicious Products</h2>
+            
+            <!-- Cakes -->
+            <div class="product-category">
+                <h3><i class="fas fa-birthday-cake"></i> Premium Cakes</h3>
+                <div class="product-grid">
+                    <div class="product-card featured-card" data-product="chocolate-cake">
+                        <img src="images/sweet1.jpeg" alt="Chocolate Cake">
+                        <h4>Chocolate Delight Cake</h4>
+                        <p>Rich chocolate cake with creamy frosting - Our signature bestseller!</p>
+                        <span class="price">25.99</span>
+                        <button class="add-to-cart" onclick="addToCart('chocolate-cake', 'Chocolate Delight Cake', 25.99)">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                    </div>
+                    
+                    <div class="product-card" data-product="vanilla-cake">
+                        <img src="images/pink.jpeg" alt="Pink Vanilla Cake">
+                        <h4>Classic Pink Vanilla Cake</h4>
+                        <p>Light and fluffy vanilla sponge cake with buttercream frosting</p>
+                        <span class="price">22.99</span>
+                        <button class="add-to-cart" onclick="addToCart('vanilla-cake', 'Classic Vanilla Cake', 22.99)">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                    </div>
+                    
+                    <div class="product-card" data-product="red-velvet">
+                        <img src="images/full pink.jpeg" alt="Full Pink Cake">
+                        <h4>Full Pink Delight Cake</h4>
+                        <p>Beautiful pink cake with cream cheese frosting</p>
+                        <span class="price">28.99</span>
+                        <button class="add-to-cart" onclick="addToCart('red-velvet', 'Full Pink Delight Cake', 28.99)">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Muffins -->
+            <div class="product-category">
+                <h3><i class="fas fa-cookie-bite"></i> Fresh Muffins</h3>
+                <div class="product-grid">
+                    <div class="product-card" data-product="blueberry-muffin">
+                        <img src="images/sweet2.jpeg" alt="Sweet Muffins">
+                        <h4>Sweet Delight Muffins (6 pack)</h4>
+                        <p>Fresh and sweet muffins - Perfect for breakfast!</p>
+                        <span class="price">12.99</span>
+                        <button class="add-to-cart" onclick="addToCart('blueberry-muffin', 'Sweet Delight Muffins (6 pack)', 12.99)">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                    </div>
+                    
+                    <div class="product-card" data-product="chocolate-muffin">
+                        <img src="images/bj.jpeg" alt="Special Muffins">
+                        <h4>Special Muffins (6 pack)</h4>
+                        <p>Our special recipe muffins with unique flavors</p>
+                        <span class="price">13.99</span>
+                        <button class="add-to-cart" onclick="addToCart('chocolate-muffin', 'Special Muffins (6 pack)', 13.99)">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                    </div>
+                    
+                    <div class="product-card" data-product="banana-muffin">
+                        <img src="images/gfj.jpeg" alt="Gourmet Muffins">
+                        <h4>Gourmet Muffins (6 pack)</h4>
+                        <p>Premium gourmet muffins with finest ingredients</p>
+                        <span class="price">11.99</span>
+                        <button class="add-to-cart" onclick="addToCart('banana-muffin', 'Gourmet Muffins (6 pack)', 11.99)">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Specialties -->
+            <div class="product-category">
+                <h3><i class="fas fa-star"></i> Our Specialties</h3>
+                <div class="specialty-grid">
+                    <div class="specialty-card">
+                        <img src="images/iuj.jpeg" alt="Specialty Item 1">
+                        <h4>Premium Specialty</h4>
+                        <p>Handcrafted with premium ingredients</p>
+                    </div>
+                    <div class="specialty-card">
+                        <img src="images/jg.jpeg" alt="Specialty Item 2">
+                        <h4>Artisan Creation</h4>
+                        <p>Made by our expert bakers</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Featured Lists -->
+            <div class="product-category">
+                <h3><i class="fas fa-list"></i> Popular Combinations</h3>
+                <div class="list-display">
+                    <div class="list-card">
+                        <img src="images/list1.jpeg" alt="Popular List 1">
+                        <h4>Best Sellers Package</h4>
+                        <p>Our most popular items combined</p>
+                    </div>
+                    <div class="list-card">
+                        <img src="images/list2.jpeg" alt="Popular List 2">
+                        <h4>Family Bundle</h4>
+                        <p>Perfect for family gatherings</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Modal -->
+    <div id="cartModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Your Cart</h2>
+            <div id="cartItems"></div>
+            <div class="cart-total">
+                <strong>Total: R<span id="cartTotal">0.00</span></strong>
+            </div>
+            <button id="checkoutBtn" class="checkout-btn">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div id="checkoutModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Checkout</h2>
+            <form id="checkoutForm">
+                <div class="form-group">
+                    <label for="customerName">Full Name:</label>
+                    <input type="text" id="customerName" required>
+                </div>
+                <div class="form-group">
+                    <label for="customerPhone">Phone Number:</label>
+                    <input type="tel" id="customerPhone" required>
+                </div>
+                <div class="form-group">
+                    <label for="customerAddress">Delivery Address:</label>
+                    <textarea id="customerAddress" required></textarea>
+                </div>
+                <div class="payment-info">
+                    <h3>Payment Information</h3>
+                    <div class="bank-card-display">
+                        <img src="images/card.jpeg" alt="Bank Card" class="bank-card-image">
+                    </div>
+                    <div class="bank-details">
+                        <p><strong>Bank Details:</strong></p>
+                        <p>Account Name: Maite Sweet Treats Bakery</p>
+                        <p>Account Number: 1234567890</p>
+                        <p>Bank: Example Bank</p>
+                    </div>
+                    <p class="total-amount"><strong>Total Amount: R<span id="checkoutTotal">0.00</span></strong></p>
+                </div>
+                <div class="form-group">
+                    <label for="paymentProof">Upload Payment Proof:</label>
+                    <input type="file" id="paymentProof" accept="image/*" required>
+                    <small>Please upload a screenshot or photo of your payment confirmation</small>
+                </div>
+                <button type="submit" class="submit-order-btn">Submit Order</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="modal">
+        <div class="modal-content success-content">
+            <i class="fas fa-check-circle success-icon"></i>
+            <h2>Order Submitted Successfully!</h2>
+            <p>Your order has been received and will be processed shortly. We'll contact you via WhatsApp for confirmation.</p>
+            <button onclick="closeSuccessModal()" class="ok-btn">OK</button>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2>About Maite Sweet Treats</h2>
+            <p>We are passionate bakers dedicated to creating the most delicious cakes and muffins using only the finest ingredients. Every item is freshly baked with love and attention to detail.</p>
+            
+            <!-- Video Showcase -->
+            <div class="video-showcase">
+                <h3><i class="fas fa-play-circle"></i> See Our Bakery in Action</h3>
+                <div class="video-container">
+                    <video controls class="showcase-video" poster="images/sweet1.jpeg">
+                        <source src="images/video.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-description">
+                        <h4>Behind the Scenes at Maite Sweet Treats</h4>
+                        <p>Watch how we create our delicious cakes and muffins with passion and precision. Every step is done with care to ensure the highest quality for our customers.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>082 048 3904</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>WhatsApp: 0820483904</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>info@sweetdelights.com</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Maite Sweet Treats. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
