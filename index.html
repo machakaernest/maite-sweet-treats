@@ -37,7 +37,7 @@
         <div class="hero-content">
             <h1>Freshly Baked Delights</h1>
             <p>Premium cakes and muffins made with love and the finest ingredients</p>
-            <button class="cta-button" onclick="scrollToProducts()">Order Now</button>
+            <button class="cta-button" onclick="openWhatsAppOrder()">Order Now</button>
         </div>
         <!-- Background Video -->
         <video autoplay muted loop class="hero-video">
@@ -52,7 +52,7 @@
             
             <!-- Cakes -->
             <div class="product-category">
-                <h3><i class="fas fa-birthday-cake"></i> Premium Cakes</h3>
+                <h3><i class="fas fa-birthday-cake"></i> Cup Cakes</h3>
                 <div class="product-grid">
                     <div class="product-card featured-card" data-product="chocolate-cake">
                         <img src="images/sweet1.jpeg" alt="Chocolate Cake">
@@ -88,7 +88,7 @@
 
             <!-- Muffins -->
             <div class="product-category">
-                <h3><i class="fas fa-cookie-bite"></i> Fresh Muffins</h3>
+                <h3><i class="fas fa-cookie-bite"></i> Scones</h3>
                 <div class="product-grid">
                     <div class="product-card" data-product="blueberry-muffin">
                         <img src="images/sweet2.jpeg" alt="Sweet Muffins">
@@ -139,19 +139,159 @@
                 </div>
             </div>
 
-            <!-- Featured Lists -->
+            <!-- Mini Lunch Box Cakes & Scones Menu -->
             <div class="product-category">
                 <h3><i class="fas fa-list"></i> Popular Combinations</h3>
-                <div class="list-display">
-                    <div class="list-card">
-                        <img src="images/list1.jpeg" alt="Popular List 1">
-                        <h4>Best Sellers Package</h4>
-                        <p>Our most popular items combined</p>
+                
+                <!-- Mini Lunch Box Cakes -->
+                <div class="menu-section">
+                    <h4 class="menu-title"><i class="fas fa-birthday-cake"></i> Mini Lunch Box Cake</h4>
+                    <div class="menu-grid">
+                        <div class="menu-item">
+                            <div class="menu-item-content">
+                                <span class="flavor">Vanilla</span>
+                                <span class="price">R60</span>
+                            </div>
+                            <button class="add-to-cart menu-cart-btn" onclick="addToCart('mini-vanilla', 'Mini Lunch Box Cake - Vanilla', 60)">
+                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                            </button>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-content">
+                                <span class="flavor">Chocolate</span>
+                                <span class="price">R70</span>
+                            </div>
+                            <button class="add-to-cart menu-cart-btn" onclick="addToCart('mini-chocolate', 'Mini Lunch Box Cake - Chocolate', 70)">
+                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                            </button>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-content">
+                                <span class="flavor">Red Velvet</span>
+                                <span class="price">R70</span>
+                            </div>
+                            <button class="add-to-cart menu-cart-btn" onclick="addToCart('mini-red-velvet', 'Mini Lunch Box Cake - Red Velvet', 70)">
+                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                            </button>
+                        </div>
                     </div>
-                    <div class="list-card">
-                        <img src="images/list2.jpeg" alt="Popular List 2">
-                        <h4>Family Bundle</h4>
-                        <p>Perfect for family gatherings</p>
+                    
+                    <!-- Toppings -->
+                    <div class="toppings-section">
+                        <h5 class="toppings-title"><i class="fas fa-star"></i> Toppings</h5>
+                        <div class="toppings-list">
+                            <span class="topping">Whipping cream</span>
+                            <span class="topping">Berries</span>
+                            <span class="topping">Oreos</span>
+                            <span class="topping">Biscoff</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Scones Menu -->
+                <div class="menu-section">
+                    <h4 class="menu-title"><i class="fas fa-cookie"></i> Scones Prices</h4>
+                    
+                    <!-- 5L Scones -->
+                    <div class="scones-category">
+                        <h5 class="scones-size">5 ℓ</h5>
+                        <div class="menu-grid">
+                            <div class="menu-item">
+                                <div class="menu-item-content">
+                                    <span class="flavor">Plain scones</span>
+                                    <span class="price">R250</span>
+                                </div>
+                                <button class="add-to-cart menu-cart-btn" onclick="addToCart('scones-5l-plain', 'Plain Scones (5ℓ)', 250)">
+                                    <i class="fas fa-shopping-cart"></i> Add to Cart
+                                </button>
+                            </div>
+                            <div class="menu-item">
+                                <div class="menu-item-content">
+                                    <span class="flavor">Raisin scones</span>
+                                    <span class="price">R280</span>
+                                </div>
+                                <button class="add-to-cart menu-cart-btn" onclick="addToCart('scones-5l-raisin', 'Raisin Scones (5ℓ)', 280)">
+                                    <i class="fas fa-shopping-cart"></i> Add to Cart
+                                </button>
+                            </div>
+                            <div class="menu-item">
+                                <div class="menu-item-content">
+                                    <span class="flavor">Blueberry scones</span>
+                                    <span class="price">R280</span>
+                                </div>
+                                <button class="add-to-cart menu-cart-btn" onclick="addToCart('scones-5l-blueberry', 'Blueberry Scones (5ℓ)', 280)">
+                                    <i class="fas fa-shopping-cart"></i> Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 10L Scones -->
+                    <div class="scones-category">
+                        <h5 class="scones-size">10 ℓ</h5>
+                        <div class="menu-grid">
+                            <div class="menu-item">
+                                <div class="menu-item-content">
+                                    <span class="flavor">Plain scones</span>
+                                    <span class="price">R450</span>
+                                </div>
+                                <button class="add-to-cart menu-cart-btn" onclick="addToCart('scones-10l-plain', 'Plain Scones (10ℓ)', 450)">
+                                    <i class="fas fa-shopping-cart"></i> Add to Cart
+                                </button>
+                            </div>
+                            <div class="menu-item">
+                                <div class="menu-item-content">
+                                    <span class="flavor">Raisin scones</span>
+                                    <span class="price">R480</span>
+                                </div>
+                                <button class="add-to-cart menu-cart-btn" onclick="addToCart('scones-10l-raisin', 'Raisin Scones (10ℓ)', 480)">
+                                    <i class="fas fa-shopping-cart"></i> Add to Cart
+                                </button>
+                            </div>
+                            <div class="menu-item">
+                                <div class="menu-item-content">
+                                    <span class="flavor">Blueberry scones</span>
+                                    <span class="price">R480</span>
+                                </div>
+                                <button class="add-to-cart menu-cart-btn" onclick="addToCart('scones-10l-blueberry', 'Blueberry Scones (10ℓ)', 480)">
+                                    <i class="fas fa-shopping-cart"></i> Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 20L Scones -->
+                    <div class="scones-category">
+                        <h5 class="scones-size">20 ℓ</h5>
+                        <div class="menu-grid">
+                            <div class="menu-item">
+                                <div class="menu-item-content">
+                                    <span class="flavor">Plain scones</span>
+                                    <span class="price">R700</span>
+                                </div>
+                                <button class="add-to-cart menu-cart-btn" onclick="addToCart('scones-20l-plain', 'Plain Scones (20ℓ)', 700)">
+                                    <i class="fas fa-shopping-cart"></i> Add to Cart
+                                </button>
+                            </div>
+                            <div class="menu-item">
+                                <div class="menu-item-content">
+                                    <span class="flavor">Raisin scones</span>
+                                    <span class="price">R750</span>
+                                </div>
+                                <button class="add-to-cart menu-cart-btn" onclick="addToCart('scones-20l-raisin', 'Raisin Scones (20ℓ)', 750)">
+                                    <i class="fas fa-shopping-cart"></i> Add to Cart
+                                </button>
+                            </div>
+                            <div class="menu-item">
+                                <div class="menu-item-content">
+                                    <span class="flavor">Blueberry scones</span>
+                                    <span class="price">R750</span>
+                                </div>
+                                <button class="add-to-cart menu-cart-btn" onclick="addToCart('scones-20l-blueberry', 'Blueberry Scones (20ℓ)', 750)">
+                                    <i class="fas fa-shopping-cart"></i> Add to Cart
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -196,9 +336,10 @@
                     </div>
                     <div class="bank-details">
                         <p><strong>Bank Details:</strong></p>
-                        <p>Account Name: Maite Sweet Treats Bakery</p>
+                        <p>Account Name: M Mthembu</p>
                         <p>Account Number: 1234567890</p>
-                        <p>Bank: Example Bank</p>
+                        <p>Bank: Capitec Bank</p>
+                        <p>Branch Code: 470010</p>
                     </div>
                     <p class="total-amount"><strong>Total Amount: R<span id="checkoutTotal">0.00</span></strong></p>
                 </div>
@@ -252,11 +393,11 @@
             <div class="contact-info">
                 <div class="contact-item">
                     <i class="fas fa-phone"></i>
-                    <span>082 048 3904</span>
+                    <span>082 048 3902</span>
                 </div>
                 <div class="contact-item">
                     <i class="fab fa-whatsapp"></i>
-                    <span>WhatsApp: 0820483904</span>
+                    <span>WhatsApp: 0820483902</span>
                 </div>
                 <div class="contact-item">
                     <i class="fas fa-envelope"></i>

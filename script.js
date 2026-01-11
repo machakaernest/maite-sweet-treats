@@ -35,10 +35,13 @@ window.addEventListener('click', function(event) {
 
 // Add to cart function
 function addToCart(productId, productName, price) {
+    console.log('Adding to cart:', productId, productName, price); // Debug log
+    
     const existingItem = cart.find(item => item.id === productId);
     
     if (existingItem) {
         existingItem.quantity += 1;
+        console.log('Updated existing item quantity:', existingItem.quantity); // Debug log
     } else {
         cart.push({
             id: productId,
@@ -46,18 +49,31 @@ function addToCart(productId, productName, price) {
             price: price,
             quantity: 1
         });
+        console.log('Added new item to cart'); // Debug log
     }
     
+    console.log('Current cart:', cart); // Debug log
     updateCartDisplay();
     showAddToCartAnimation();
 }
 
 // Update cart display
 function updateCartDisplay() {
-    cartCount.textContent = cart.reduce((total, item) => total + item.quantity, 0);
+    console.log('Updating cart display...'); // Debug log
+    
+    if (!cartCount || !cartTotalElement || !checkoutTotalElement) {
+        console.error('Cart DOM elements not found!');
+        return;
+    }
+    
+    const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
     cartTotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+    
+    cartCount.textContent = totalItems;
     cartTotalElement.textContent = cartTotal.toFixed(2);
     checkoutTotalElement.textContent = cartTotal.toFixed(2);
+    
+    console.log('Cart updated - Items:', totalItems, 'Total:', cartTotal); // Debug log
     
     renderCartItems();
 }
@@ -190,13 +206,21 @@ function sendWhatsAppMessage(orderSummary, paymentProofBase64) {
     
     orderText += `\n💰 TOTAL: R${orderSummary.total.toFixed(2)}\n`;
     orderText += `⏰ Order Time: ${new Date(orderSummary.timestamp).toLocaleString()}\n\n`;
-    orderText += `💳 Payment proof attached below`;
+    orderText += `💳 Payment Details:\n`;
+    orderText += `Account Name: M Mthembu\n`;
+    orderText += `Account Number: 1234567890\n`;
+    orderText += `Bank: Capitec Bank\n`;
+    orderText += `Branch Code: 470010\n\n`;
+    orderText += `Payment proof will be sent separately.`;
     
-    // WhatsApp business number
-    const whatsappNumber = '27820483904'; // South African WhatsApp number
+    // WhatsApp business number (South African format)
+    const whatsappNumber = '27820483902'; // +27 82 048 3902 (correct number)
     
     // Create WhatsApp URL
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(orderText)}`;
+    
+    // Debug: Log the URL
+    console.log('Order WhatsApp URL:', whatsappUrl);
     
     // Store order data in localStorage for reference
     const orders = JSON.parse(localStorage.getItem('orders') || '[]');
@@ -218,15 +242,36 @@ function sendWhatsAppMessage(orderSummary, paymentProofBase64) {
     // Reset form
     checkoutForm.reset();
     
-    // Open WhatsApp after a short delay
-    setTimeout(() => {
-        window.open(whatsappUrl, '_blank');
-    }, 2000);
+    // Open WhatsApp immediately
+    const opened = window.open(whatsappUrl, '_blank');
+    
+    // If popup was blocked, show the URL to user
+    if (!opened || opened.closed || typeof opened.closed == 'undefined') {
+        alert(`Please copy this link and open it manually: ${whatsappUrl}`);
+    }
 }
 
 // Close success modal
 function closeSuccessModal() {
     successModal.style.display = 'none';
+}
+
+// Open WhatsApp for direct ordering
+function openWhatsAppOrder() {
+    const whatsappNumber = '27820483902'; // Correct number: +27 82 048 3902
+    const message = `Hi! I'm interested in ordering from Maite Sweet Treats. Could you please help me with the menu and pricing?`;
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+    
+    // Debug: Log the URL to console
+    console.log('WhatsApp URL:', whatsappUrl);
+    
+    // Try opening WhatsApp
+    const opened = window.open(whatsappUrl, '_blank');
+    
+    // If popup was blocked, show the URL to user
+    if (!opened || opened.closed || typeof opened.closed == 'undefined') {
+        alert(`Please copy this link and open it manually: ${whatsappUrl}`);
+    }
 }
 
 // Scroll to products section
@@ -252,6 +297,26 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 // Initialize cart display on page load
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM loaded, initializing cart...'); // Debug log
+    
+    // Check if all required elements exist
+    const requiredElements = {
+        cartIcon: document.querySelector('.cart-icon'),
+        cartModal: document.getElementById('cartModal'),
+        cartCount: document.querySelector('.cart-count'),
+        cartItems: document.getElementById('cartItems'),
+        cartTotalElement: document.getElementById('cartTotal'),
+        checkoutTotalElement: document.getElementById('checkoutTotal')
+    };
+    
+    for (const [name, element] of Object.entries(requiredElements)) {
+        if (!element) {
+            console.error(`Required element not found: ${name}`);
+        } else {
+            console.log(`Found element: ${name}`);
+        }
+    }
+    
     updateCartDisplay();
 });
 
