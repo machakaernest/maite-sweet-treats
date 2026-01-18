@@ -159,16 +159,9 @@ function openCheckoutModal() {
 async function handleOrderSubmission(event) {
     event.preventDefault();
     
-    const formData = new FormData(checkoutForm);
     const customerName = document.getElementById('customerName').value;
     const customerPhone = document.getElementById('customerPhone').value;
     const customerAddress = document.getElementById('customerAddress').value;
-    const paymentProof = document.getElementById('paymentProof').files[0];
-    
-    if (!paymentProof) {
-        alert('Please upload payment proof');
-        return;
-    }
     
     // Create order summary
     const orderSummary = {
@@ -182,17 +175,12 @@ async function handleOrderSubmission(event) {
         timestamp: new Date().toISOString()
     };
     
-    // Convert payment proof to base64 for WhatsApp message
-    const reader = new FileReader();
-    reader.onload = function(e) {
-        const base64Image = e.target.result;
-        sendWhatsAppMessage(orderSummary, base64Image);
-    };
-    reader.readAsDataURL(paymentProof);
+    // Send WhatsApp message with order details
+    sendWhatsAppMessage(orderSummary);
 }
 
 // Send WhatsApp message
-function sendWhatsAppMessage(orderSummary, paymentProofBase64) {
+function sendWhatsAppMessage(orderSummary) {
     // Create order details text
     let orderText = `🍰 NEW ORDER - Maite Sweet Treats 🧁\n\n`;
     orderText += `👤 Customer: ${orderSummary.customer.name}\n`;
@@ -206,12 +194,7 @@ function sendWhatsAppMessage(orderSummary, paymentProofBase64) {
     
     orderText += `\n💰 TOTAL: R${orderSummary.total.toFixed(2)}\n`;
     orderText += `⏰ Order Time: ${new Date(orderSummary.timestamp).toLocaleString()}\n\n`;
-    orderText += `💳 Payment Details:\n`;
-    orderText += `Account Name: M Mthembu\n`;
-    orderText += `Account Number: 1234567890\n`;
-    orderText += `Bank: Capitec Bank\n`;
-    orderText += `Branch Code: 470010\n\n`;
-    orderText += `Payment proof will be sent separately.`;
+    orderText += `Thank you for your order! We'll contact you to confirm payment details.`;
     
     // WhatsApp business number (South African format)
     const whatsappNumber = '27820483902'; // +27 82 048 3902 (correct number)
@@ -219,15 +202,11 @@ function sendWhatsAppMessage(orderSummary, paymentProofBase64) {
     // Create WhatsApp URL
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(orderText)}`;
     
-    // Debug: Log the URL
-    console.log('Order WhatsApp URL:', whatsappUrl);
-    
     // Store order data in localStorage for reference
     const orders = JSON.parse(localStorage.getItem('orders') || '[]');
     orders.push({
         ...orderSummary,
-        id: Date.now(),
-        paymentProofUploaded: true
+        id: Date.now()
     });
     localStorage.setItem('orders', JSON.stringify(orders));
     
@@ -320,33 +299,6 @@ document.addEventListener('DOMContentLoaded', function() {
     updateCartDisplay();
 });
 
-// File upload preview
-document.getElementById('paymentProof').addEventListener('change', function(e) {
-    const file = e.target.files[0];
-    if (file) {
-        // Remove any existing preview
-        const existingPreview = document.querySelector('.payment-preview');
-        if (existingPreview) {
-            existingPreview.remove();
-        }
-        
-        // Create preview
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            const preview = document.createElement('div');
-            preview.className = 'payment-preview';
-            preview.innerHTML = `
-                <p style="margin-top: 10px; color: #28a745;">
-                    <i class="fas fa-check-circle"></i> Payment proof uploaded: ${file.name}
-                </p>
-                <img src="${e.target.result}" alt="Payment Proof" style="max-width: 200px; max-height: 200px; margin-top: 10px; border-radius: 8px; border: 2px solid #ddd;">
-            `;
-            document.getElementById('paymentProof').parentNode.appendChild(preview);
-        };
-        reader.readAsDataURL(file);
-    }
-});
-
 // Add some loading animation for better UX
 function showLoading() {
     const loadingDiv = document.createElement('div');
@@ -362,6 +314,9 @@ function showLoading() {
     document.body.appendChild(loadingDiv);
     
     setTimeout(() => {
-        document.getElementById('loading').remove();
+        const loading = document.getElementById('loading');
+        if (loading) {
+            loading.remove();
+        }
     }, 2000);
 }

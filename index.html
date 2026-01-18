@@ -78,7 +78,7 @@
                         <h4>12 Chocolate Flavoured Cupcakes</h4>
                         <p>Chocolate flavoured cupcakes with pink buttercream</p>
                         <span class="price">300</span>
-                        <button class="add-to-cart" onclick="addToCart('red-velvet-cake', 'Red Velvet Flavoured Cupcakes')">
+                        <button class="add-to-cart" onclick="addToCart('red-velvet-cake', 'Red Velvet Flavoured Cupcakes',300)">
                             <i class="fas fa-shopping-cart"></i> Add to Cart
                         </button>
                     </div>
@@ -139,7 +139,7 @@
                                 <span class="flavor">Vanilla</span>
                                 <span class="price">60</span>
                             </div>
-                            <button class="add-to-cart menu-cart-btn" onclick="addToCart('mini-vanilla', 'Mini Lunch Box Cake - Vanilla', 30)">
+                            <button class="add-to-cart menu-cart-btn" onclick="addToCart('mini-vanilla', 'Mini Lunch Box Cake - Vanilla', 60)">
                                 <i class="fas fa-shopping-cart"></i> Add to Cart
                             </button>
                         </div>
@@ -148,7 +148,7 @@
                                 <span class="flavor">Chocolate</span>
                                 <span class="price">70</span>
                             </div>
-                            <button class="add-to-cart menu-cart-btn" onclick="addToCart('mini-chocolate', 'Mini Lunch Box Cake - Chocolate', 35)">
+                            <button class="add-to-cart menu-cart-btn" onclick="addToCart('mini-chocolate', 'Mini Lunch Box Cake - Chocolate', 70)">
                                 <i class="fas fa-shopping-cart"></i> Add to Cart
                             </button>
                         </div>
@@ -157,7 +157,7 @@
                                 <span class="flavor">Red Velvet</span>
                                 <span class="price">70</span>
                             </div>
-                            <button class="add-to-cart menu-cart-btn" onclick="addToCart('mini-red-velvet', 'Mini Lunch Box Cake - Red Velvet', 35)">
+                            <button class="add-to-cart menu-cart-btn" onclick="addToCart('mini-red-velvet', 'Mini Lunch Box Cake - Red Velvet', 70)">
                                 <i class="fas fa-shopping-cart"></i> Add to Cart
                             </button>
                         </div>
@@ -322,11 +322,6 @@
                         <img src="images/card.jpeg" alt="Bank Card" class="bank-card-image">
                     </div>
                     <p class="total-amount"><strong>Total Amount: R<span id="checkoutTotal">0.00</span></strong></p>
-                </div>
-                <div class="form-group">
-                    <label for="paymentProof">Upload Payment Proof:</label>
-                    <input type="file" id="paymentProof" accept="image/*" required>
-                    <small>Please upload a screenshot or photo of your payment confirmation</small>
                 </div>
                 <button type="submit" class="submit-order-btn">Submit Order</button>
             </form>
